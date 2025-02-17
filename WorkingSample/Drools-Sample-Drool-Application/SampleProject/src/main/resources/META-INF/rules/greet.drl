@@ -1,0 +1,17 @@
+package greet
+
+import com.demo.SampleProject.Greeting;
+
+rule "Greeting Rule"
+when
+    $greeting : Greeting(message == "Hello")
+then
+    System.out.println("Received greeting: " + $greeting.getMessage());
+end
+
+rule "Another Greeting Rule"
+when
+    $greeting : Greeting(message == "Goodbye")
+then
+    System.out.println("Received goodbye message: " + $greeting.getMessage());
+end
