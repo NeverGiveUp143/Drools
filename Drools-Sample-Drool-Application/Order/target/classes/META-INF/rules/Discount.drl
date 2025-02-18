@@ -1,0 +1,24 @@
+package Discount;
+
+import com.DRL.Order.Models.Order;
+
+rule "Apply Basic Discount"
+when
+    $order : Order(price >= 9999)
+then
+    $order.setDiscount(10);
+end
+
+rule "Apply Discount for Orders price between 10,001 and 30,000"
+when
+    $order : Order(price >= 10001 && price <= 30000)
+then
+    $order.setDiscount(12);
+end
+
+rule "Apply Higher Discount for Orders price above 30,001"
+when
+    $order : Order(price >= 30001)
+then
+    $order.setDiscount(17);
+end
