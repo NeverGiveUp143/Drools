@@ -10,6 +10,10 @@ public class OrderService {
 	public Order getOrderDiscount(Order order) {
 		DroolsConfig config = new DroolsConfig();
 		KieSession kieSession = config.getKieSession("DiscountSession");
+		org.kie.api.runtime.rule.Agenda agenda = kieSession.getAgenda();
+		if(agenda !=  null) {
+			kieSession.getAgenda().getAgendaGroup("No-Discount").setFocus();
+		}		
 		kieSession.insert(order);
 		kieSession.fireAllRules();
 		kieSession.dispose();

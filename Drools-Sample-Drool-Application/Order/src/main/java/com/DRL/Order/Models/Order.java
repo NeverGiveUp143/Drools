@@ -9,8 +9,29 @@ public class Order {
     private double price;
     private String orderType;
     private double discount;
+    private double finalPrice;
+    private String status;
+    private boolean isPurchased; 
     
-    public String getProductName() {
+    public double getFinalPrice() {
+		return finalPrice;
+	}
+	public void setFinalPrice(double finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public boolean isPurchased() {
+		return isPurchased;
+	}
+	public void setPurchased(boolean isPurchased) {
+		this.isPurchased = isPurchased;
+	}
+	public String getProductName() {
         return productName;
     }
     public void setProductName(String productName) {
