@@ -1,0 +1,17 @@
+package UpdatePrice;
+
+import com.DRL.Order.Models.Order;
+
+
+rule "Update finalPrice when discount offer"
+no-loop true
+when
+    $order : Order(status == "In-Progress")
+then
+    double discountAmount =  ($order.getPrice() * $order.getDiscount())/100;
+    double finalPrice = $order.getPrice() - discountAmount;
+    $order.setFinalPrice(finalPrice);
+    $order.setStatus("In-Progress");
+    update($order);  
+end
+

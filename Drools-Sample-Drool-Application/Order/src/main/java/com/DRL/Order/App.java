@@ -14,7 +14,9 @@ public class App {
     	electronicOrder.setProductType("Electronic");
     	electronicOrder.setPrice(99000.45);
     	orderService.getOrderDiscount(electronicOrder);   	
-    	System.out.print(String.format("Applied %.2f%% discount for order with price: %.2f Rs", 
+    	System.out.println(String.format("Applied %.2f%% discount for order with price: %.2f Rs", 
     		    electronicOrder.getDiscount(), electronicOrder.getPrice()));
+    	System.out.println(String.format("final price after discount: %.2f Rs", 
+    		    electronicOrder.getFinalPrice()));
     }
 }
