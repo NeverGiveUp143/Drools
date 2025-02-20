@@ -12,10 +12,15 @@ public class OrderService {
 		KieSession kieSession = config.getKieSession("DiscountSession");
 		org.kie.api.runtime.rule.Agenda agenda = kieSession.getAgenda();
 		if(agenda !=  null) {
-			kieSession.getAgenda().getAgendaGroup("No-Discount").setFocus();
+			agenda.getAgendaGroup("Tax").setFocus();
 		}		
 		kieSession.insert(order);
 		kieSession.fireAllRules();
+		if(agenda !=  null) {
+			agenda.getAgendaGroup("Discount").setFocus();
+		}		
+		kieSession.insert(order);
+		kieSession.fireAllRules();		
 		kieSession.dispose();
 		return order;
 	}

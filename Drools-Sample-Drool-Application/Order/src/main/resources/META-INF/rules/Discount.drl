@@ -11,11 +11,11 @@ then
     $order.setDiscount(10);
     $order.setStatus("In-Progress");
     update($order);  
-    System.out.println("First rule");
 end
 
 rule "Apply Discount for Orders price between 10,001 and 30,000"
 agenda-group "Discount"
+no-loop true
 salience 2
 when
     $order : Order(price >= 10001 && price <= 30000)
@@ -23,7 +23,6 @@ then
     $order.setDiscount(12);
     $order.setStatus("In-Progress");
     update($order);  
-    System.out.println("Second rule");
 end
 
 rule "Apply Higher Discount for Orders price above 30,001"
@@ -35,7 +34,19 @@ then
     $order.setDiscount(17);
     $order.setStatus("In-Progress");
     update($order);  
-    System.out.println("Last rule");
+end
+
+rule "Winter Sale Discount for Orders price above 30,001"
+agenda-group "Discount"
+date-effective "20-Feb-2025T00:00:00"
+date-expires "25-Feb-2025T23:59:59"
+salience 1
+when
+    $order : Order(price >= 30001)
+then
+    $order.setDiscount(20);
+    $order.setStatus("In-Progress");
+    update($order);  
 end
 
 rule "Apply No Discount for Orders"
@@ -44,9 +55,10 @@ salience 1
 when
     $order : Order(price >= 30001)
 then
-    $order.setDiscount(0);
+    $order.setDiscount(0);   
     $order.setStatus("In-Progress");
-    update($order);  
-    System.out.println("Last rule");
+    update($order); 
 end
+
+
 

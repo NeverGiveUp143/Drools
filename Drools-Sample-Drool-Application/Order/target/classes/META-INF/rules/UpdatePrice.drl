@@ -4,6 +4,7 @@ import com.DRL.Order.Models.Order;
 
 
 rule "Update finalPrice when discount offer"
+agenda-group "Discount"
 no-loop true
 when
     $order : Order(status == "In-Progress")
@@ -15,3 +16,14 @@ then
     update($order);  
 end
 
+rule "Update finalPrice with no discount offer"
+agenda-group "No-Discount"
+no-loop true
+when
+    $order : Order(status == "In-Progress")
+then
+    double finalPrice = $order.getPrice();
+    $order.setFinalPrice(finalPrice);
+    $order.setStatus("In-Progress");
+    update($order);  
+end
