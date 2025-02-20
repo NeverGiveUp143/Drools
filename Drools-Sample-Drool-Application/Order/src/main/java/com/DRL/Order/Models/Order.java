@@ -7,11 +7,23 @@ public class Order {
     private String productType;
     private String productName;
     private double price;
+    private double basePrice;
     private String orderType;
     private double discount;
     private double finalPrice;
     private String status;
     private boolean isPurchased; 
+    private double Tax;
+    
+    public Order(int orderId, String productName, String orderType, String productType, double price, double basePrice) {
+        this.orderId = orderId;
+        this.productName = productName;
+        this.orderType = orderType;
+        this.productType = productType;
+        this.price = price;
+        this.basePrice = basePrice;
+    }
+    
     
     public double getFinalPrice() {
 		return finalPrice;
@@ -67,4 +79,16 @@ public class Order {
     public void setOrderType(String orderType) {
         this.orderType = orderType;
     }
+	public double getTax() {
+		return Tax;
+	}
+	public void setTax(double tax) {
+		Tax = tax;
+	}
+	public double getBasePrice() {
+		return basePrice;
+	}
+	public void setBasePrice(double basePrice) {
+		this.basePrice = basePrice;
+	}
 }
