@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
-   <kbase name="rules" packages="Discount,UpdatePrice,AddedTax">
+   <kbase name="rules" packages="Discount,UpdatePrice,AddedTax,Purchase">
         <ksession name="DiscountSession"/>
+    </kbase>
+    
+    <kbase name="reportRules" packages="Report">
+        <ksession name="ReportSession"/>
     </kbase>
 </kmodule>
 

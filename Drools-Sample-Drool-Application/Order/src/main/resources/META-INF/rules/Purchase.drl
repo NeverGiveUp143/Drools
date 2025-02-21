@@ -1,0 +1,25 @@
+package Purchase;
+
+import com.DRL.Order.Models.Order;
+
+rule "Purchase product with Discount"
+agenda-group "Discount"
+when
+    $order : Order(finalPrice > 0)
+then
+    $order.setPurchased(true);
+    $order.setStatus("Purchased");
+    update($order);  
+end
+
+
+
+rule "Purchase product with NO-Discount"
+agenda-group "No-Discount"
+when
+    $order : Order(finalPrice > 0)
+then
+    $order.setPurchased(true);
+    $order.setStatus("Purchased");
+    update($order);  
+end

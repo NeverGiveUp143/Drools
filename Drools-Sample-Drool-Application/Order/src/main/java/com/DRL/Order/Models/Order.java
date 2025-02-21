@@ -12,7 +12,7 @@ public class Order {
     private double discount;
     private double finalPrice;
     private String status;
-    private boolean isPurchased; 
+    private boolean purchased; 
     private double Tax;
     
     public Order(int orderId, String productName, String orderType, String productType, double price, double basePrice) {
@@ -37,12 +37,7 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public boolean isPurchased() {
-		return isPurchased;
-	}
-	public void setPurchased(boolean isPurchased) {
-		this.isPurchased = isPurchased;
-	}
+	
 	public String getProductName() {
         return productName;
     }
@@ -90,5 +85,15 @@ public class Order {
 	}
 	public void setBasePrice(double basePrice) {
 		this.basePrice = basePrice;
+	}
+
+
+	public boolean isPurchased() {
+		return purchased;
+	}
+
+
+	public void setPurchased(boolean purchased) {
+		this.purchased = purchased;
 	}
 }
