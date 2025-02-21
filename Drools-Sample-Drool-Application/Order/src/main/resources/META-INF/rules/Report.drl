@@ -1,0 +1,35 @@
+package Report;
+
+import com.DRL.Order.Models.Order;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+rule "Order Summary"
+when
+    accumulate (
+        $order : Order(purchased == true, finalPrice != null),
+        $orderCount : count(),
+        $totalPrice : sum($order.getFinalPrice()),
+        $avgPrice   : average($order.getFinalPrice()),
+        $minPrice   : min($order.getFinalPrice()),
+        $maxPrice   : max($order.getFinalPrice())
+    )
+then
+    double total = ($totalPrice != null) ? ((Number) $totalPrice).doubleValue() : 0.0;
+    double avg = ($avgPrice != null) ? ((Number) $avgPrice).doubleValue() : 0.0;
+    double min = ($minPrice != null) ? ((Number) $minPrice).doubleValue() : 0.0;
+    double max = ($maxPrice != null) ? ((Number) $maxPrice).doubleValue() : 0.0;
+
+    // Round values to 2 decimal places using BigDecimal
+    BigDecimal roundedTotal = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP);
+    BigDecimal roundedAvg = new BigDecimal(avg).setScale(2, RoundingMode.HALF_UP);
+    BigDecimal roundedMin = new BigDecimal(min).setScale(2, RoundingMode.HALF_UP);
+    BigDecimal roundedMax = new BigDecimal(max).setScale(2, RoundingMode.HALF_UP);
+
+    System.out.println("Today's Order Summary:");
+    System.out.println("Total Orders: " + $orderCount);
+    System.out.println("Total Revenue: Rs" + roundedTotal);
+    System.out.println("Average Order Price: Rs" + roundedAvg);
+    System.out.println("Min Order Price: Rs" + roundedMin);
+    System.out.println("Max Order Price: Rs" + roundedMax);
+end
