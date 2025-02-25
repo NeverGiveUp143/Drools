@@ -28,8 +28,8 @@ then
 
     System.out.println("Today's Order Summary:");
     System.out.println("Total Orders: " + $orderCount);
-    System.out.println("Total Revenue: Rs" + roundedTotal);
-    System.out.println("Average Order Price: Rs" + roundedAvg);
-    System.out.println("Min Order Price: Rs" + roundedMin);
-    System.out.println("Max Order Price: Rs" + roundedMax);
+    System.out.println("Total Revenue: Rs " + roundedTotal);
+    System.out.println("Average Order Price: Rs " + roundedAvg);
+    System.out.println("Min Order Price: Rs " + roundedMin);
+    System.out.println("Max Order Price: Rs " + roundedMax);
 end
