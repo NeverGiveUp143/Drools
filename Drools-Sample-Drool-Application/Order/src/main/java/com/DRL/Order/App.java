@@ -7,7 +7,6 @@ import com.DRL.Order.Service.OrderService;
 
 public class App {
     public static void main(String[] args) {
-       
     	OrderService orderService = new OrderService();
     	Order electronicOrder = new Order(1, "IPhone16", "Express", "Electronic", 99000.45, 99000.45);
     	orderService.getOrderDiscount(electronicOrder);  
@@ -16,8 +15,7 @@ public class App {
     	System.out.println(String.format("Applied %.2f%% discount for order with price including tax Rs: %.2f", 
     		    electronicOrder.getDiscount(), electronicOrder.getPrice()));
     	System.out.println(String.format("Final price after applying discount Rs: %.2f", 
-    		    electronicOrder.getFinalPrice()));
-    	
+    		    electronicOrder.getFinalPrice()));   	
     	System.out.println("*****************");
     	
     	ListOfOrders();
