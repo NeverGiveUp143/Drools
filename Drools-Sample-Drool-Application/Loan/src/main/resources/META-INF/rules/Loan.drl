@@ -1,0 +1,40 @@
+package Loan;
+
+import com.Project.Loan.Models.Loan;
+
+
+// Rule 1: Credit Score Check
+rule "CIBIL Score Rule"
+    ruleflow-group "CIBILScoreCheck"
+when
+    $loan: Loan( CIBILScore < 600 )
+then
+    $loan.setValid(false);
+    $loan.setLoanApplicationStatus("Denied");
+    update($loan);  
+    System.out.println("Credit score too low, loan denied");
+end
+
+// Rule 2: Age Check
+rule "Age Check Rule"
+    ruleflow-group "EligibilityRules"
+when
+    $loan: Loan( age < 18 )
+then
+     $loan.setValid(false);
+     $loan.setLoanApplicationStatus("Denied");
+     update($loan);  
+    System.out.println("Age is too low, not eligible for loan");
+end
+
+// Rule 3: Loan Approval
+rule "Loan Approval Rule"
+    ruleflow-group "LoanStatusUpdate"
+when
+    $loan: Loan(valid == true)
+then
+    $loan.setLoanApplicationStatus("Approved");
+    System.out.println("Loan approved");
+end
+
+
